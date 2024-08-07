@@ -20,3 +20,28 @@ function factorial(n) {
 function findLongestWord(str) {
   return str.split(" ").reduce((max, word) => Math.max(max, word.length), 0);
 }
+
+// 3.0
+function longestWord(sentence) {
+  let words = sentence.split(" ");
+  let longest = "";
+
+  for (let word of words) {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }
+
+  return longest;
+}
+
+console.log(longestWord("The quick brown fox jumped over the lazy dog")); // Output: "jumped"
+
+// 4
+
+// sum the array of number
+function sumArray(arr) {
+  return arr.reduce((sum, num) => sum + num, 0);
+}
+
+console.log(sumArray([1, 2, 3, 4])); // Output: 10
