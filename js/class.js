@@ -69,3 +69,38 @@ new MyPromise((resolve, reject) => {
 })
   .then((result) => console.log(result))
   .catch((error) => console.log(error));
+
+//  2. Deep Clone an Object
+// Problem:
+// Write a function that deep clones an object, meaning it should create a new object that is identical to the original, including nested objects.
+
+function deepClone(obj) {
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  if (obj instanceof Array) {
+    let copy = [];
+    for (let i = 0; i < obj.length; i++) {
+      copy[i] = deepClone(obj[i]);
+    }
+    return copy;
+  }
+
+  if (obj instanceof Object) {
+    let copy = {};
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        copy[key] = deepClone(obj[key]);
+      }
+    }
+    return copy;
+  }
+
+  throw new Error("Unable to copy obj! Its type isn't supported.");
+}
+
+// Example Usage:
+let original = { a: 1, b: { c: 2 } };
+let clone = deepClone(original);
+console.log(clone); // { a: 1, b: { c: 2 } }
